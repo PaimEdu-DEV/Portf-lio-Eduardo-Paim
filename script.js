@@ -1,68 +1,78 @@
 /* =========================================
-   PORTFOLIO — script.js
+   PORTFOLIO — script.js (FULL FIXED)
    Cursor · Nav · Stats · Filters · Reveal
 ========================================= */
+
+document.addEventListener('DOMContentLoaded', () => {
 
 /* ── CUSTOM CURSOR ── */
 const cursor = document.getElementById('cursor');
 const follower = document.getElementById('cursorFollower');
-let mouseX = 0, mouseY = 0;
-let followerX = 0, followerY = 0;
 
-document.addEventListener('mousemove', e => {
-  mouseX = e.clientX;
-  mouseY = e.clientY;
-  cursor.style.left = mouseX + 'px';
-  cursor.style.top  = mouseY + 'px';
-});
+if (cursor && follower) {
+  let mouseX = 0, mouseY = 0;
+  let followerX = 0, followerY = 0;
 
-(function animFollower() {
-  followerX += (mouseX - followerX) * 0.12;
-  followerY += (mouseY - followerY) * 0.12;
-  follower.style.left = followerX + 'px';
-  follower.style.top  = followerY + 'px';
-  requestAnimationFrame(animFollower);
-})();
+  document.addEventListener('mousemove', e => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursor.style.left = mouseX + 'px';
+    cursor.style.top  = mouseY + 'px';
+  });
 
-/* Hover state */
-const hoverTargets = 'a, button, .filter-btn, .project-card, .social-btn, .card-link';
-document.querySelectorAll(hoverTargets).forEach(el => {
-  el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
-  el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
-});
+  function animateFollower() {
+    followerX += (mouseX - followerX) * 0.12;
+    followerY += (mouseY - followerY) * 0.12;
+    follower.style.left = followerX + 'px';
+    follower.style.top  = followerY + 'px';
+    requestAnimationFrame(animateFollower);
+  }
+  animateFollower();
 
-/* Hide cursor when outside window */
-document.addEventListener('mouseleave', () => {
-  cursor.style.opacity = '0';
-  follower.style.opacity = '0';
-});
-document.addEventListener('mouseenter', () => {
-  cursor.style.opacity = '1';
-  follower.style.opacity = '1';
-});
+  const hoverTargets = 'a, button, .filter-btn, .project-card, .social-btn, .card-link';
+  document.querySelectorAll(hoverTargets).forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
+  });
 
-/* ── STICKY NAV ── */
+  document.addEventListener('mouseleave', () => {
+    cursor.style.opacity = '0';
+    follower.style.opacity = '0';
+  });
+
+  document.addEventListener('mouseenter', () => {
+    cursor.style.opacity = '1';
+    follower.style.opacity = '1';
+  });
+}
+
+/* ── NAVBAR ── */
 const nav = document.querySelector('.nav');
-window.addEventListener('scroll', () => {
-  nav.classList.toggle('scrolled', window.scrollY > 60);
-}, { passive: true });
 
-/* ── MOBILE NAV TOGGLE ── */
+if (nav) {
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+}
+
+/* ── MOBILE NAV ── */
 const navToggle = document.getElementById('navToggle');
-navToggle.addEventListener('click', () => {
-  nav.classList.toggle('open');
-  document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
-});
 
-/* Close mobile nav on link click */
+if (navToggle && nav) {
+  navToggle.addEventListener('click', () => {
+    nav.classList.toggle('open');
+    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+  });
+}
+
 document.querySelectorAll('.nav-links a').forEach(link => {
   link.addEventListener('click', () => {
-    nav.classList.remove('open');
+    if (nav) nav.classList.remove('open');
     document.body.style.overflow = '';
   });
 });
 
-/* ── ANIMATED COUNTERS ── */
+/* ── COUNTER ── */
 function easeOutExpo(t) {
   return t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
 }
@@ -73,32 +83,15 @@ function animateCounter(el) {
   const start = performance.now();
 
   function update(now) {
-    const elapsed = now - start;
-    const progress = Math.min(elapsed / duration, 1);
+    const progress = Math.min((now - start) / duration, 1);
     const eased = easeOutExpo(progress);
-    el.textContent = Math.round(eased * target) + (el.dataset.suffix || '+');
+    el.textContent = Math.round(eased * target) + '+';
     if (progress < 1) requestAnimationFrame(update);
-    else el.textContent = target + '+';
   }
+
   requestAnimationFrame(update);
 }
 
-/* ── INTERSECTION OBSERVER ── */
-const observerOpts = { threshold: 0.15, rootMargin: '0px 0px -60px 0px' };
-
-/* Reveal elements */
-const revealObserver = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      revealObserver.unobserve(entry.target);
-    }
-  });
-}, observerOpts);
-
-document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-/* Counter observer */
 const counterObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -108,64 +101,35 @@ const counterObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.5 });
 
-document.querySelectorAll('.stat-num[data-count]').forEach(el => counterObserver.observe(el));
-
-/* ── PROJECT FILTERS ── */
-const filterBtns = document.querySelectorAll('.filter-btn');
-const cards = document.querySelectorAll('.project-card');
-
-filterBtns.forEach(btn => {
-  btn.addEventListener('click', () => {
-    /* Update active button */
-    filterBtns.forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-
-    const filter = btn.dataset.filter;
-
-    cards.forEach((card, i) => {
-      const match = filter === 'all' || card.dataset.category === filter;
-      if (match) {
-        card.classList.remove('hidden');
-        /* Stagger re-entry */
-        card.style.setProperty('--delay', (i * 60) + 'ms');
-        setTimeout(() => card.classList.add('visible'), 10);
-      } else {
-        card.classList.add('hidden');
-        card.classList.remove('visible');
-      }
-    });
-  });
+document.querySelectorAll('.stat-num[data-count]').forEach(el => {
+  counterObserver.observe(el);
 });
 
-/* ── SMOOTH ACTIVE NAV ON SCROLL ── */
-const sections = document.querySelectorAll('section[id]');
-const navLinks = document.querySelectorAll('.nav-links a');
-
-const sectionObserver = new IntersectionObserver(entries => {
+/* ── REVEAL ── */
+const revealObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const id = entry.target.getAttribute('id');
-      navLinks.forEach(link => {
-        link.style.color = link.getAttribute('href') === `#${id}`
-          ? 'var(--text)' : '';
-      });
+      entry.target.classList.add('visible');
+      revealObserver.unobserve(entry.target);
     }
   });
-}, { threshold: 0.4 });
+}, { threshold: 0.15 });
 
-sections.forEach(s => sectionObserver.observe(s));
+document.querySelectorAll('.reveal').forEach(el => {
+  revealObserver.observe(el);
+});
 
-/* ── REVEAL SECTIONS ON SCROLL ── */
-const sectionRevealObserver = new IntersectionObserver(entries => {
+/* ── SECTION REVEAL ── */
+const sectionObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.querySelectorAll('.section-header, .about-grid, .filters, .projects-grid, .contact-inner')
         .forEach((el, i) => {
-          el.style.transition = `opacity 0.8s cubic-bezier(0.16,1,0.3,1) ${i * 80}ms, transform 0.8s cubic-bezier(0.16,1,0.3,1) ${i * 80}ms`;
+          el.style.transition = `0.8s ease ${i * 80}ms`;
           el.style.opacity = '1';
           el.style.transform = 'translateY(0)';
         });
-      sectionRevealObserver.unobserve(entry.target);
+      sectionObserver.unobserve(entry.target);
     }
   });
 }, { threshold: 0.1 });
@@ -176,23 +140,49 @@ document.querySelectorAll('.about, .projects, .contact').forEach(section => {
       el.style.opacity = '0';
       el.style.transform = 'translateY(40px)';
     });
-  sectionRevealObserver.observe(section);
+  sectionObserver.observe(section);
 });
 
-/* ── CARD 3D TILT ── */
+/* ── FILTERS ── */
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.project-card');
+
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+
+    cards.forEach((card, i) => {
+      const match = filter === 'all' || card.dataset.category === filter;
+
+      if (match) {
+        card.classList.remove('hidden');
+        setTimeout(() => card.classList.add('visible'), 10);
+      } else {
+        card.classList.add('hidden');
+        card.classList.remove('visible');
+      }
+    });
+  });
+});
+
+/* ── CARD 3D ── */
 document.querySelectorAll('.card-inner').forEach(card => {
   card.addEventListener('mousemove', e => {
     const rect = card.getBoundingClientRect();
     const x = (e.clientX - rect.left) / rect.width - 0.5;
     const y = (e.clientY - rect.top) / rect.height - 0.5;
-    card.style.transform = `translateY(-4px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
+    card.style.transform = `rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
   });
+
   card.addEventListener('mouseleave', () => {
     card.style.transform = '';
   });
 });
 
-/* ── HERO TITLE GLITCH ON HOVER ── */
+/* ── GLITCH EFFECT ── */
 document.querySelectorAll('.hero-title .line').forEach(line => {
   const original = line.textContent;
   const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
@@ -202,10 +192,11 @@ document.querySelectorAll('.hero-title .line').forEach(line => {
     const interval = setInterval(() => {
       line.textContent = original.split('').map((ch, idx) => {
         if (idx < iter) return original[idx];
-        if (ch === ' ') return ' ';
         return chars[Math.floor(Math.random() * chars.length)];
       }).join('');
+
       iter += 0.5;
+
       if (iter >= original.length) {
         clearInterval(interval);
         line.textContent = original;
@@ -214,14 +205,9 @@ document.querySelectorAll('.hero-title .line').forEach(line => {
   });
 });
 
-/* ── PAGE LOAD SEQUENCE ── */
+/* ── LOAD ── */
 window.addEventListener('load', () => {
   document.body.style.opacity = '1';
-  /* Trigger hero stats counter after short delay */
-  setTimeout(() => {
-    document.querySelectorAll('.stat-num[data-count]').forEach(el => {
-      const rect = el.getBoundingClientRect();
-      if (rect.top < window.innerHeight) animateCounter(el);
-    });
-  }, 800);
+});
+
 });
