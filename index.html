@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Eduardo Paim — Desenvolvedor</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Cursor personalizado -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-follower" id="cursorFollower"></div>
+
+  <!-- Noise overlay -->
+  <div class="noise"></div>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <nav class="nav">
+      <div class="nav-logo">
+        <span class="logo-bracket">[</span>
+        <span class="logo-text">ep</span>
+        <span class="logo-bracket">]</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#about">sobre</a></li>
+        <li><a href="#projects">projetos</a></li>
+        <li><a href="#contact">contato</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="menu">
+        <span></span><span></span>
+      </button>
+    </nav>
+
+    <div class="hero-content">
+      <p class="hero-tag"><span class="tag-dot"></span> disponível para novos projetos</p>
+      <h1 class="hero-title">
+        <span class="line" data-text="Eduardo">Eduardo</span>
+        <span class="line accent" data-text="Paim">Paim</span>
+      </h1>
+      <p class="hero-sub">
+        Desenvolvedor focado em construir sistemas reais.<br>
+        APIs em C# integradas com banco de dados, automações com Python e interfaces modernas que resolvem problemas de verdade.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn-primary">
+          <span>Ver projetos</span>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M3 8H13M13 8L9 4M13 8L9 12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </a>
+        <a href="#contact" class="btn-ghost">entrar em contato</a>
+      </div>
+    </div>
+
+    <div class="hero-aside">
+      <div class="aside-number">01</div>
+      <div class="aside-line"></div>
+      <div class="aside-label">scroll</div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num" data-count="8">0</span>
+        <span class="stat-label">Projetos</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num" data-count="4">0</span>
+        <span class="stat-label">Stacks</span>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat">
+        <span class="stat-num-text">∞</span>
+        <span class="stat-label">Café</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section class="about" id="about">
+    <div class="section-header">
+      <span class="section-index">02 —</span>
+      <h2 class="section-title">Sobre mim</h2>
+    </div>
+    <div class="about-grid">
+      <div class="about-photo">
+        <div class="photo-wrapper">
+          <div class="photo-placeholder">
+            <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="38" r="18" stroke="currentColor" stroke-width="1.5"/>
+              <path d="M16 84c0-18.778 15.222-34 34-34s34 15.222 34 34" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+            <span>sua foto</span>
+          </div>
+          <div class="photo-deco"></div>
+        </div>
+      </div>
+      <div class="about-text">
+        <p class="about-bio">
+          Oi, sou <strong>Eduardo Paim</strong> — desenvolvedor focado em criar sistemas completos, do banco de dados até a interface. Gosto de construir soluções que realmente funcionam e resolvem problemas reais.
+        </p>
+        <p class="about-bio secondary">
+          Atualmente estudo Engenharia de Software e também me especializo em automação, o que me permite enxergar sistemas de ponta a ponta. Tenho experiência prática com APIs em C#, integração com banco de dados, automações em Python e desenvolvimento de interfaces com HTML, CSS e JavaScript.
+        </p>
+
+        <div class="about-tags">
+          <span class="about-tag">Eng. de Software</span>
+          <span class="about-tag">Cibersistemas</span>
+          <span class="about-tag">Full Stack</span>
+          <span class="about-tag">Automação</span>
+        </div>
+
+        <div class="skills-grid">
+          <div class="skill-item"><span class="skill-bar" style="--w:88%"></span>HTML · CSS · JS</div>
+          <div class="skill-item"><span class="skill-bar" style="--w:82%"></span>C# · .NET / APIs REST</div>
+          <div class="skill-item"><span class="skill-bar" style="--w:75%"></span>Python · Automação</div>
+          <div class="skill-item"><span class="skill-bar" style="--w:70%"></span>UI Design · Figma</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section class="projects" id="projects">
+    <div class="section-header">
+      <span class="section-index">03 —</span>
+      <h2 class="section-title">Projetos</h2>
+    </div>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">Todos</button>
+      <button class="filter-btn" data-filter="front">Front-end</button>
+      <button class="filter-btn" data-filter="api">API / Back</button>
+      <button class="filter-btn" data-filter="python">Python</button>
+      <button class="filter-btn" data-filter="design">Design</button>
+    </div>
+
+    <div class="projects-grid" id="projectsGrid">
+
+      <!-- Projeto 1 -->
+      <article class="project-card" data-category="front" style="--delay:0ms">
+        <div class="card-inner">
+          <div class="card-img">
+            <div class="img-placeholder"><span>Projeto 01</span></div>
+            <div class="card-overlay">
+              <a href="#" class="card-link" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag">Front-end</span>
+              <span class="card-year">2025</span>
+            </div>
+            <h3 class="card-title">Landing Page Responsiva</h3>
+            <p class="card-desc">Página web responsiva desenvolvida com HTML, CSS e JavaScript, focada em design moderno e experiência do usuário. O projeto simula um site real com navegação fluida e layout adaptável.</p>
+            <div class="card-tech">
+              <span>HTML</span><span>CSS</span><span>JavaScript</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 2 -->
+      <article class="project-card featured" data-category="api" style="--delay:60ms">
+        <div class="card-inner">
+          <div class="card-img">
+            <div class="img-placeholder"><span>Projeto 02</span></div>
+            <div class="card-overlay">
+              <a href="#" class="card-link" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag">API / Back</span>
+              <span class="card-year">2025</span>
+            </div>
+            <h3 class="card-title">API REST em C#</h3>
+            <p class="card-desc">API REST desenvolvida em C# com .NET e SQL Server, com autenticação, endpoints completos de CRUD e documentação via Swagger. Projeto focado em simular uma aplicação real com integração backend e banco de dados.</p>
+            <div class="card-tech">
+              <span>C#</span><span>.NET</span><span>SQL Server</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 3 -->
+      <article class="project-card" data-category="python" style="--delay:120ms">
+        <div class="card-inner">
+          <div class="card-img">
+            <div class="img-placeholder"><span>Projeto 03</span></div>
+            <div class="card-overlay">
+              <a href="#" class="card-link" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag">Python</span>
+              <span class="card-year">2025</span>
+            </div>
+            <h3 class="card-title">Detector de Cores com OpenCV</h3>
+            <p class="card-desc">Aplicação em Python utilizando OpenCV para detecção de cores em tempo real via câmera. O sistema identifica padrões de cor e pode ser aplicado em automação e visão computacional.</p>
+            <div class="card-tech">
+              <span>Python</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 4 -->
+      <article class="project-card" data-category="front" style="--delay:180ms">
+        <div class="card-inner">
+          <div class="card-img">
+            <div class="img-placeholder"><span>Projeto 04</span></div>
+            <div class="card-overlay">
+              <a href="#" class="card-link" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag">Front-end</span>
+              <span class="card-year">2024</span>
+            </div>
+            <h3 class="card-title">Interface Web Moderna</h3>
+            <p class="card-desc">Interface desenvolvida com HTML e CSS com foco em design limpo e organização visual. O projeto demonstra boas práticas de layout e estruturação de páginas web.</p>
+            <div class="card-tech">
+              <span>HTML</span><span>CSS</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 5 -->
+      <article class="project-card" data-category="api" style="--delay:240ms">
+        <div class="card-inner">
+          <div class="card-img">
+            <div class="img-placeholder"><span>Projeto 05</span></div>
+            <div class="card-overlay">
+              <a href="#" class="card-link" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag">API / Back</span>
+              <span class="card-year">2024</span>
+            </div>
+            <h3 class="card-title">Sistema CRUD em C#</h3>
+            <p class="card-desc">Sistema desenvolvido em C# com .NET para gerenciamento de dados com operações de criação, leitura, atualização e exclusão, integrado a banco de dados.</p>
+            <div class="card-tech">
+              <span>C#</span><span>.NET</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 6 -->
+      <article class="project-card" data-category="design" style="--delay:300ms">
+        <div class="card-inner">
+          <div class="card-img">
+            <div class="img-placeholder"><span>Projeto 06</span></div>
+            <div class="card-overlay">
+              <a href="#" class="card-link" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag">Design</span>
+              <span class="card-year">2024</span>
+            </div>
+            <h3 class="card-title">Protótipo UI no Figma</h3>
+            <p class="card-desc">Protótipo de interface desenvolvido no Figma com foco em usabilidade e design moderno, simulando uma aplicação real.</p>
+            <div class="card-tech">
+              <span>Figma</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 7 -->
+      <article class="project-card" data-category="front" style="--delay:360ms">
+        <div class="card-inner">
+          <div class="card-img">
+            <div class="img-placeholder"><span>Projeto 07</span></div>
+            <div class="card-overlay">
+              <a href="#" class="card-link" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag">Front-end</span>
+              <span class="card-year">2024</span>
+            </div>
+            <h3 class="card-title">Projeto JavaScript Interativo</h3>
+            <p class="card-desc">Aplicação interativa utilizando JavaScript para manipulação do DOM, com foco em dinamismo e experiência do usuário.</p>
+            <div class="card-tech">
+              <span>JavaScript</span><span>CSS</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Projeto 8 -->
+      <article class="project-card" data-category="python" style="--delay:420ms">
+        <div class="card-inner">
+          <div class="card-img">
+            <div class="img-placeholder"><span>Projeto 08</span></div>
+            <div class="card-overlay">
+              <a href="#" class="card-link" target="_blank">
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                  <path d="M5 15L15 5M15 5H8M15 5V12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-tag">Python</span>
+              <span class="card-year">2024</span>
+            </div>
+            <h3 class="card-title">Automação com Python</h3>
+            <p class="card-desc">Script em Python voltado para automação de tarefas repetitivas, aumentando a produtividade e reduzindo processos manuais.</p>
+            <div class="card-tech">
+              <span>Python</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <div class="section-header">
+        <span class="section-index">04 —</span>
+        <h2 class="section-title">Contato</h2>
+      </div>
+      <p class="contact-phrase">Tem um projeto em mente?<br><em>Vamos conversar.</em></p>
+      <a href="/cdn-cgi/l/email-protection#c0b3a5b5a5ada1a9ac80a5ada1a9aceea3afad" class="contact-email"><span class="__cf_email__" data-cfemail="11627464747c70787d51747c70787d3f727e7c">[email&#160;protected]</span></a>
+
+      <div class="social-links">
+
+        <a href="#" class="social-btn github" aria-label="GitHub">
+          <div class="social-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+          </div>
+          <div class="social-info">
+            <span class="social-name">GitHub</span>
+            <span class="social-handle">adicione seu usuário</span>
+          </div>
+          <div class="social-arrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <a href="#" class="social-btn instagram" aria-label="Instagram">
+          <div class="social-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </div>
+          <div class="social-info">
+            <span class="social-name">Instagram</span>
+            <span class="social-handle">adicione seu usuário</span>
+          </div>
+          <div class="social-arrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </a>
+
+        <a href="#" class="social-btn whatsapp" aria-label="WhatsApp">
+          <div class="social-icon">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+            </svg>
+          </div>
+          <div class="social-info">
+            <span class="social-name">WhatsApp</span>
+            <span class="social-handle">adicione seu número</span>
+          </div>
+          <div class="social-arrow">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M2 12L12 2M12 2H5M12 2V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            </svg>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <span class="footer-copy">© 2025 Eduardo Paim — Feito com código e café.</span>
+    <a href="#home" class="back-top">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M7 12V2M7 2L3 6M7 2L11 6" stroke="currentColor" stroke-width="1.5"
